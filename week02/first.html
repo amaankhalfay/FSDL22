@@ -4,50 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Using CSS</title>
-    <link rel="stylessheet" href="./first.css">
     <style>
         header {
-            background-color: black;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            
-        }
-        h1 {
-            color: aqua;
-            margin: 0%;
-             
-        }
-        .tl {
-            color: aliceblue;
-            margin: 10px 0 0;
-            
-        }
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    
+}
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f8ff;
+  margin: 0;
+  padding: 0;
+}
+h1 {
+    color: aqua;
+    margin: 0%;
+     
+}
+.tl {
+    color: aliceblue;
+    margin: 10px 0 0;
+    
+}
 
-        .heading1{
-            text-align: center;
-        }
-        .table{
-            margin: 10px;
-            border-collapse: collapse;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        th,td{
-            border: 0.5px solid black;
-            padding: 10px;
-            text-align: center;
+.heading1{
+    text-align: center;
+}
+.table{
+    margin: 10px;
+    border-collapse: collapse;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+th,td{
+    border: 0.5px solid black;
+    padding: 10px;
+    text-align: center;
 
 
-        }
+}
 
-        th{
-            background-color: lightgray;
-        }
+th{
+    background-color: lightgray;
+}
+
+.list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+ul, li {
+color: brown;
+
+}
+.hovering{
+    display:flex;
+    flex-direction : column;
+    align-items: center;
+    margin-bottom: 20px;
+    
+}
+
+.box{
+    width: 100px;
+    height: 100px;
+    background-color: palevioletred;
+
+}
+.box:hover{
+    width: 200px;
+}
     </style>
 </head>
+
 <body>
     <header>
         <h1>Basic CSS</h1>
@@ -94,6 +127,12 @@
       </ul>
    
     </section>
+    <section class="hovering">
+    <h2> Hovering of box</h2> 
+    <div class="box">
+
+    </div>
+</section>
 
 
 </body>
