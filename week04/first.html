@@ -3,76 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript Concepts Example</title>
+    <title>Variables</title>
+    <style>
+        /* Fixed CSS */
+        #button_A {
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Fixed property */
+        }
+    </style>
 </head>
 <body>
-    <h1>JavaScript Concepts Example</h1>
-
-    <!-- Input for age -->
-    <label for="ageInput">Enter your age: </label>
-    <input type="number" id="ageInput" placeholder="Enter age" />
-
-    <!-- Button to trigger the check -->
-    <button onclick="checkAge()">Check Age</button>
-
-    <p id="message"></p>
+    <button id="button_A">Press me</button>
+    <h3 id="heading_A"></h3>
 
     <script>
-        // 1. Variables (age and message)
-        let age;
-        let message;
+        const buttonA = document.querySelector("#button_A");
+        const headingA = document.querySelector("#heading_A");
 
-        // 2. Classes and Objects: Define a Person class
-        class Person {
-            constructor(name, age) {
-                this.name = name;
-                this.age = age;
-            }
+        let count = 1;
 
-            // Method to check if the person is eligible to vote
-            isEligibleToVote() {
-                return this.age >= 18;
-            }
-
-            // Method to return a custom message based on age
-            getMessage() {
-                if (this.age < 18) {
-                    return "You are too young to vote.";
-                } else if (this.age >= 18 && this.age < 65) {
-                    return "You are eligible to vote.";
-                } else {
-                    return "You are a senior citizen eligible to vote.";
-                }
-            }
-        }
-
-        // 3. Functions: Function to check the age and display message
-        function checkAge() {
-            // 4. Get the value from the input field
-            age = document.getElementById('ageInput').value;
-
-            // 5. Conditions: Check if the input is valid
-            if (age === "" || age < 0) {
-                message = "Please enter a valid age.";
-            } else {
-                // 6. Create an object of the Person class
-                let person = new Person("User", age);
-
-                // 7. Call the getMessage method of the person object
-                message = person.getMessage();
-
-                // 8. Loop through a simple iteration to log the message a few times
-                for (let i = 0; i < 3; i++) {
-                    console.log(message); // Just for demonstration
-                }
-            }
-
-            // 9. Display the message in the paragraph tag
-            document.getElementById('message').textContent = message;
-        }
-
-        // 10. Event: Trigger the checkAge function when the button is clicked
-        document.querySelector("button").addEventListener("click", checkAge);
+        buttonA.onclick = () => {
+            buttonA.textContent = "Try again!";
+            headingA.textContent = `${count} clicks so far`;
+            count += 1;
+        };
     </script>
 </body>
 </html>
