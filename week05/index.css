@@ -8,33 +8,33 @@ body {
 .container {
     background: white;
     padding: 20px;
-    width: 300px;
+    width: 400px;
     margin: auto;
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 h1, h2 {
-    font-size: 20px;
+    font-size: 22px;
 }
 
 form input, button {
-    width: 90%;
+    width: 80%;
     padding: 10px;
-    margin: 5px;
+    margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
 button {
-    background-color: #28a745;
+    background-color: #007bff;
     color: white;
     cursor: pointer;
     border: none;
 }
 
 button:hover {
-    background-color: #218838;
+    background-color: #0056b3;
 }
 
 #errorMessage {
@@ -48,8 +48,20 @@ ul {
 }
 
 ul li {
-    background: #eee;
+    background: #f8f8f8;
     margin: 5px;
     padding: 10px;
     border-radius: 5px;
+}
+
+#checkoutBtn {
+    background-color: #28a745;
+    color: white;
+    margin-top: 15px;
+    cursor: pointer;
+    border: none;
+}
+
+#checkoutBtn:hover {
+    background-color: #218838;
 }

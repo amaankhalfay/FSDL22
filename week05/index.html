@@ -3,24 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Manager</title>
+    <title>Online Delivery App</title>
     <link rel="stylesheet" href="./index.css">
 </head>
 <body>
     <div class="container">
-        <h1>User Management System</h1>
+        <h1>Online Delivery App</h1>
         
-        <form id="userForm">
-            <input type="text" id="name" placeholder="Enter Name" required>
-            <input type="email" id="email" placeholder="Enter Email" required>
-            <input type="date" id="birthDate" required>
-            <button type="submit">Add User</button>
+        <form id="itemForm">
+            <input type="text" id="itemName" placeholder="Enter Item Name" required>
+            <input type="number" id="itemPrice" placeholder="Enter Item Price" required>
+            <button type="submit">Add Item to Cart</button>
         </form>
+        
+        <h2>Cart</h2>
+        <ul id="cartList"></ul>
+        
+        <button id="checkoutBtn">Checkout</button>
+        <p id="totalPrice">Total: $0</p>
 
         <p id="errorMessage"></p>
-
-        <h2>Users List</h2>
-        <ul id="userList"></ul>
     </div>
 
     <script src="script.js"></script>

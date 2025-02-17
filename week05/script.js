@@ -1,61 +1,68 @@
-class UserManager {
-    constructor() {
-        this.users = []; // Array to store user details
-    }
-
-    // Validate user input
-    validateUser(name, email, birthDate) {
-        if (typeof name !== "string" || name.trim() === "") {
-            throw new Error("Invalid name! It must be a non-empty string.");
-        }
-        if (!email.includes("@")) {
-            throw new Error("Invalid email! It must contain '@'.");
-        }
-        if (isNaN(new Date(birthDate))) {
-            throw new Error("Invalid birth date! Must be a valid date.");
-        }
-    }
-
-    // Add a new user
-    addUser(name, email, birthDate) {
+document.addEventListener("DOMContentLoaded", function () {
+    const itemForm = document.getElementById("itemForm");
+    const cartList = document.getElementById("cartList");
+    const totalPriceElement = document.getElementById("totalPrice");
+    const errorMessage = document.getElementById("errorMessage");
+    const checkoutBtn = document.getElementById("checkoutBtn");
+    
+    let cart = [];
+    
+    // Handle form submission
+    itemForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        
+        const itemName = document.getElementById("itemName").value.trim();
+        const itemPrice = parseFloat(document.getElementById("itemPrice").value);
+        
         try {
-            this.validateUser(name, email, birthDate);
-            let age = this.calculateAge(birthDate);
-            this.users.push({ name, email, birthDate, age });
-            console.log(`User added: ${name} (Age: ${age})`);
+            validateItem(itemName, itemPrice);
+            addItemToCart(itemName, itemPrice);
+            updateCartDisplay();
+            itemForm.reset();
+            errorMessage.textContent = "";
         } catch (error) {
-            console.error(`Error: ${error.message}`);
+            errorMessage.textContent = error.message;
+        }
+    });
+    
+    // Validate item input
+    function validateItem(name, price) {
+        if (!name) {
+            throw new Error("Item name cannot be empty!");
+        }
+        if (isNaN(price) || price <= 0) {
+            throw new Error("Item price must be a positive number.");
         }
     }
 
-    // Calculate age from birth date
-    calculateAge(birthDate) {
-        let birth = new Date(birthDate);
-        let today = new Date();
-        let age = today.getFullYear() - birth.getFullYear();
-        let monthDiff = today.getMonth() - birth.getMonth();
-        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
-            age--; // Adjust for birthdays not yet reached
-        }
-        return age;
+    // Add item to the cart
+    function addItemToCart(name, price) {
+        cart.push({ name, price });
     }
 
-    // Display all users
-    displayUsers() {
-        if (this.users.length === 0) {
-            console.log("No users found.");
+    // Update cart display
+    function updateCartDisplay() {
+        cartList.innerHTML = "";
+        let totalPrice = 0;
+        
+        cart.forEach(item => {
+            let li = document.createElement("li");
+            li.textContent = `${item.name} - $${item.price.toFixed(2)}`;
+            cartList.appendChild(li);
+            totalPrice += item.price;
+        });
+        
+        totalPriceElement.textContent = `Total: $${totalPrice.toFixed(2)}`;
+    }
+
+    // Handle checkout
+    checkoutBtn.addEventListener("click", function () {
+        if (cart.length === 0) {
+            alert("Your cart is empty! Add items to checkout.");
             return;
         }
-        console.log("User List:");
-        this.users.forEach((user, index) => {
-            console.log(`${index + 1}. ${user.name.toUpperCase()} - ${user.email} (Age: ${user.age})`);
-        });
-    }
-}
-
-// Example Usage
-const userManager = new UserManager();
-userManager.addUser("Alice", "alice@example.com", "2000-05-15");
-userManager.addUser("Bob", "bobexample.com", "1998-10-10"); // Invalid email
-userManager.addUser("Charlie", "charlie@example.com", "invalid-date"); // Invalid date
-userManager.displayUsers();
+        alert("Order placed successfully! Thank you for shopping.");
+        cart = [];
+        updateCartDisplay();
+    });
+});
