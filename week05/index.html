@@ -3,10 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>javascript</title>
-
+    <title>User Manager</title>
+    <link rel="stylesheet" href="./index.css">
 </head>
 <body>
-    
+    <div class="container">
+        <h1>User Management System</h1>
+        
+        <form id="userForm">
+            <input type="text" id="name" placeholder="Enter Name" required>
+            <input type="email" id="email" placeholder="Enter Email" required>
+            <input type="date" id="birthDate" required>
+            <button type="submit">Add User</button>
+        </form>
+
+        <p id="errorMessage"></p>
+
+        <h2>Users List</h2>
+        <ul id="userList"></ul>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
