@@ -1,30 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Delivery App</title>
-    <link rel="stylesheet" href="./index.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoTrack - Sustainability Tracker</title>
+  <link rel="stylesheet" href="./index.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Online Delivery App</h1>
-        
-        <form id="itemForm">
-            <input type="text" id="itemName" placeholder="Enter Item Name" required>
-            <input type="number" id="itemPrice" placeholder="Enter Item Price" required>
-            <button type="submit">Add Item to Cart</button>
-        </form>
-        
-        <h2>Cart</h2>
-        <ul id="cartList"></ul>
-        
-        <button id="checkoutBtn">Checkout</button>
-        <p id="totalPrice">Total: $0</p>
+  <header>
+    <h1>EcoTrack</h1>
+    <p>Track Your Carbon Footprint and Sustainability Goals</p>
+  </header>
 
-        <p id="errorMessage"></p>
-    </div>
+  <main>
+    <!-- Carbon Footprint Calculator -->
+    <section id="calculator">
+      <h2>Carbon Footprint Calculator</h2>
+      <form id="carbonForm">
+        <label for="miles">Miles Driven (per week):</label>
+        <input type="number" id="miles" name="miles" required>
+        
+        <label for="electricity">Electricity Usage (kWh per month):</label>
+        <input type="number" id="electricity" name="electricity" required>
+        
+        <label for="plastic">Plastic Waste (kg per month):</label>
+        <input type="number" id="plastic" name="plastic" required>
+        
+        <button type="submit">Calculate</button>
+      </form>
+      <p id="result"></p>
+    </section>
 
-    <script src="script.js"></script>
+    <!-- Sustainability Tips -->
+    <section id="tips">
+      <h2>Sustainability Tips</h2>
+      <ul id="tipList"></ul>
+    </section>
+
+    <!-- Goal Tracker -->
+    <section id="goals">
+      <h2>Set Your Sustainability Goals</h2>
+      <form id="goalForm">
+        <label for="goal">Goal:</label>
+        <input type="text" id="goal" name="goal" required>
+        
+        <label for="targetDate">Target Date:</label>
+        <input type="date" id="targetDate" name="targetDate" required>
+        
+        <button type="submit">Add Goal</button>
+      </form>
+      <ul id="goalList"></ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 EcoTrack. Save the Planet!</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>

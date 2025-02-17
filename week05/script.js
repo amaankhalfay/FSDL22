@@ -1,68 +1,60 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const itemForm = document.getElementById("itemForm");
-    const cartList = document.getElementById("cartList");
-    const totalPriceElement = document.getElementById("totalPrice");
-    const errorMessage = document.getElementById("errorMessage");
-    const checkoutBtn = document.getElementById("checkoutBtn");
-    
-    let cart = [];
-    
-    // Handle form submission
-    itemForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-        
-        const itemName = document.getElementById("itemName").value.trim();
-        const itemPrice = parseFloat(document.getElementById("itemPrice").value);
-        
-        try {
-            validateItem(itemName, itemPrice);
-            addItemToCart(itemName, itemPrice);
-            updateCartDisplay();
-            itemForm.reset();
-            errorMessage.textContent = "";
-        } catch (error) {
-            errorMessage.textContent = error.message;
-        }
-    });
-    
-    // Validate item input
-    function validateItem(name, price) {
-        if (!name) {
-            throw new Error("Item name cannot be empty!");
-        }
-        if (isNaN(price) || price <= 0) {
-            throw new Error("Item price must be a positive number.");
-        }
+// Carbon Footprint Calculator
+document.getElementById('carbonForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+  
+    // Input values
+    const miles = parseFloat(document.getElementById('miles').value);
+    const electricity = parseFloat(document.getElementById('electricity').value);
+    const plastic = parseFloat(document.getElementById('plastic').value);
+  
+    // Error handling
+    if (isNaN(miles) || isNaN(electricity) || isNaN(plastic)) {
+      alert('Please enter valid numbers for all fields.');
+      return;
     }
-
-    // Add item to the cart
-    function addItemToCart(name, price) {
-        cart.push({ name, price });
+  
+    // Carbon footprint calculation (simplified)
+    const carbonFootprint = (miles * 0.4) + (electricity * 0.6) + (plastic * 2);
+    document.getElementById('result').innerText = `Your estimated carbon footprint is ${carbonFootprint.toFixed(2)} kg CO2 per month.`;
+  });
+  
+  // Sustainability Tips
+  const tips = [
+    "Use reusable bags instead of plastic bags.",
+    "Switch to LED bulbs to save energy.",
+    "Reduce water usage by fixing leaks.",
+    "Recycle paper, glass, and metal.",
+    "Compost organic waste to reduce landfill use."
+  ];
+  
+  const tipList = document.getElementById('tipList');
+  tips.forEach(tip => {
+    const li = document.createElement('li');
+    li.textContent = tip;
+    tipList.appendChild(li);
+  });
+  
+  // Goal Tracker
+  document.getElementById('goalForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+  
+    const goal = document.getElementById('goal').value;
+    const targetDate = document.getElementById('targetDate').value;
+  
+    // Date validation
+    const today = new Date();
+    const selectedDate = new Date(targetDate);
+    if (selectedDate <= today) {
+      alert('Please select a future date for your goal.');
+      return;
     }
-
-    // Update cart display
-    function updateCartDisplay() {
-        cartList.innerHTML = "";
-        let totalPrice = 0;
-        
-        cart.forEach(item => {
-            let li = document.createElement("li");
-            li.textContent = `${item.name} - $${item.price.toFixed(2)}`;
-            cartList.appendChild(li);
-            totalPrice += item.price;
-        });
-        
-        totalPriceElement.textContent = `Total: $${totalPrice.toFixed(2)}`;
-    }
-
-    // Handle checkout
-    checkoutBtn.addEventListener("click", function () {
-        if (cart.length === 0) {
-            alert("Your cart is empty! Add items to checkout.");
-            return;
-        }
-        alert("Order placed successfully! Thank you for shopping.");
-        cart = [];
-        updateCartDisplay();
-    });
-});
+  
+    // Add goal to list
+    const goalList = document.getElementById('goalList');
+    const li = document.createElement('li');
+    li.textContent = `${goal} (Target Date: ${targetDate})`;
+    goalList.appendChild(li);
+  
+    // Clear form
+    document.getElementById('goalForm').reset();
+  });
